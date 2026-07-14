@@ -2492,8 +2492,6 @@ impl Drop for AgentPtyRegistry {
 #[cfg(test)]
 mod tests {
     use super::*;
-    use crate::event::OrchestrationSurfaceRole;
-    use std::time::Duration;
 
     // PRD #42 M1: the `pid_to_pgid` boundary-check unit tests moved with the
     // function to `crate::platform::proc` (see `src/platform/proc/unix.rs`).
@@ -2780,6 +2778,7 @@ mod tests {
 #[cfg(all(test, unix))]
 mod spawn_tests {
     use super::*;
+    use crate::event::OrchestrationSurfaceRole;
     use std::time::Duration;
 
     // ---------------------------------------------------------------------
