@@ -857,6 +857,34 @@
         }
       }
     },
+    "libiconv@latest": {
+      "last_modified": "2026-06-27T07:37:20Z",
+      "resolved": "github:NixOS/nixpkgs/3d46470bb3030020f7e1361f33514854f5bfa86d#libiconv",
+      "source": "devbox-search",
+      "version": "2.42",
+      "systems": {
+        "aarch64-linux": {
+          "outputs": [
+            {
+              "name": "out",
+              "path": "/nix/store/p3xv5hs806fp3kgawyg4v6v1v3mhffhi-glibc-iconv-2.42",
+              "default": true
+            }
+          ],
+          "store_path": "/nix/store/p3xv5hs806fp3kgawyg4v6v1v3mhffhi-glibc-iconv-2.42"
+        },
+        "x86_64-linux": {
+          "outputs": [
+            {
+              "name": "out",
+              "path": "/nix/store/4rr29qx2avfs1xflg4m1wk35fcbhnjm9-glibc-iconv-2.42",
+              "default": true
+            }
+          ],
+          "store_path": "/nix/store/4rr29qx2avfs1xflg4m1wk35fcbhnjm9-glibc-iconv-2.42"
+        }
+      }
+    },
     "ripgrep@15.1.0": {
       "last_modified": "2026-06-27T07:37:20Z",
       "resolved": "github:NixOS/nixpkgs/3d46470bb3030020f7e1361f33514854f5bfa86d#ripgrep",
