@@ -4,3 +4,24 @@ test-e2e = "nextest run --features e2e"
 # PRD #77 Decision 7: `cargo xtask linkage-check` enforces catalog↔test
 # linkage. Args after the alias pass through to the binary.
 xtask = "run --quiet --package xtask-linkage-check --"
+
+# macOS: link through scripts/macos-link.sh instead of the toolchain's default
+# `cc`.
+#
+# Inside `devbox shell` the nix toolchain exports SDKROOT, DEVELOPER_DIR and
+# NIX_LDFLAGS that point into /nix/store. Rust's std links -liconv on Apple
+# targets, so the linker resolves it from nixpkgs' apple-sdk and bakes an
+# absolute store path into the binary as its install name. The next
+# `nix-collect-garbage` deletes that path and every locally built binary dies
+# at startup with `dyld: Library not loaded`.
+#
+# The wrapper drops those variables and calls /usr/bin/cc, which resolves
+# -liconv through the real macOS SDK and records /usr/lib/libiconv.2.dylib -
+# part of the dyld shared cache, so it is always there. Outside devbox the
+# variables are unset and the wrapper is a no-op, which is what CI and the
+# release builds already do.
+[target.aarch64-apple-darwin]
+linker = "scripts/macos-link.sh"
+
+[target.x86_64-apple-darwin]
+linker = "scripts/macos-link.sh"
